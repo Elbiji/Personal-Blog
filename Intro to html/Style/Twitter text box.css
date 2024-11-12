@@ -1,0 +1,48 @@
+.profile-pic {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.input {
+    vertical-align: middle;
+    font-size: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border: none;
+    width: 250px;
+}
+
+.Tweet {
+    font-size: 16px;
+    font-weight: bold;
+    vertical-align: middle;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    background-color:  rgb(29, 155, 240);
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.Tweet:hover {
+    cursor: pointer;
+    
+}
+
+.Tweet-box {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25)
+}

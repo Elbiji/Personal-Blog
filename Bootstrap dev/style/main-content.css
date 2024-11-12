@@ -1,0 +1,85 @@
+.main-picture {
+    position: relative;
+}
+
+.activities-bar {
+    height: 100px;
+    position: absolute;
+    bottom: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1000px;
+}
+
+.picture-text {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    color: white;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.service-container {
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.continent-card {
+    position: relative;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+
+.continent-title {
+    position: absolute;
+    left: 10px;
+    bottom: 5px;
+    color: white;
+}
+
+.featured-card {
+    position: relative;
+}
+
+.featured-desc {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    font-weight: 500;
+}
+
+.recent-price {
+    position: absolute;
+    top: 5px;
+    left: 20px;
+}
+
+
+.icons {
+    height: 25px;
+}
+
+.card {
+    position: relative;
+}
+
+.guide-pictures {
+    transition: opacity 0.25s;
+}
+
+.guide-pictures:hover+.mother-language {
+    opacity: 100%;
+}
+
+.mother-language {
+    opacity: 0%;
+    top: 50px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity 0.25s;
+}
+
