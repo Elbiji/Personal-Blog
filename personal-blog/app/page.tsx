@@ -2,6 +2,7 @@
 export default function Home() {
   return (
     <div className="max-w-screen-md mx-auto px-5">
+      <script src="https://unpkg.com/country-flag-emoji@latest/dist/country-flag-emoji.umd.js"></script>
       <header className="text-sm">
         <nav className="mt-8">
           <div className="flex ring-1 ring-gray-700/10 bg-neutral-800/20 p-2 rounded-lg h-[50px] shadow-lg mx-auto fixed left-1/2 -translate-x-1/2  backdrop-blur-sm z-10">
@@ -9,7 +10,7 @@ export default function Home() {
               <a className="text-white font-bold font-Inter hover:text-gray-600 duration-200" href="">About</a>
               <a className="text-white font-bold font-Inter hover:text-gray-600 duration-200" href="">Recap</a>
               <a className="text-white font-bold font-Inter hover:text-gray-600 duration-200" href="">Bucket List</a>
-              <div className="w-px bg-neutral-500 h-[20px]"></div>
+              <div className="w-[2px] bg-neutral-500 h-[20px]"></div>
               <a className="text-neutral-500 font-bold font-Inter hover:text-white duration-200">More</a>
             </ul>
           </div>
@@ -50,18 +51,73 @@ export default function Home() {
             More to come!
           </div>
         </div>
-        <div className="text-left">
-          <h1 className=" mt-8 text-4xl font-Inter font-bold text-neutral-500">A New Chapter</h1>
-          <p className="text-sm text-neutral-500 font-Inter pt-4 text-justify font-semibold">Part 1</p>
-          <p className="text-sm font-mono pt-4 text-justify"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div className="text-left group">
+          <h1 className="duration-200 group-hover:font-extralight group-hover:text-sm mt-8 text-4xl font-Inter font-bold text-neutral-500">A New Chapter</h1>
+          <div className="flex justify-between">
+            <p className="text-sm  group-hover:text-sm group-hover:font-bold duration-200 text-neutral-500 font-Inter pt-4 text-justify font-extralight">Part 1</p>
+            <p className="text-sm  group-hover:text-sm group-hover:font-bold duration-200 text-neutral-500 font-Inter pt-4 text-justify font-extralight">2025</p>
+          </div>
+          <p className="duration-200 group-hover:text-lg text-sm font-mono pt-4 text-justify"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
         <div className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
         <div className="text-left">
           <h1 className=" mt-8 text-5xl font-Inter font-bold ">Bucket List</h1>
-          <p className="text-sm text-neutral-500 font-Inter pt-4 text-justify font-semibold">Things that i always wish  would come true!</p>
-          <p className="text-sm font-mono pt-4 text-justify"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p className="text-sm text-neutral-500 font-Inter pt-4 text-justify font-semibold">Things that i always wish  would come true.</p>
+          <div className="flex mt-10">
+            <div className="flex justify-end items-center text-sm font-mono ">
+              <ul>
+                <li className="mb-2">
+                  <div className="flex flex-col">
+                    <div className="flex items-center gap-3">
+                      <div className="rounded-[10px] w-[10px] h-[10px] ring-slate-600 ring-1">
+                      </div>
+                      <div>
+                        Get that degree 🎓
+                      </div>
+                    </div>
+                    <p className="inline-block pl-5 font-Inter text-xs text-gray-500">
+                        on progress
+                    </p>
+                  </div>
+                </li>
+                <li className="mb-2">
+                  <div className="flex flex-col">
+                    <div className="flex items-center gap-3">
+                      <div className="rounded-[10px] w-[10px] h-[10px] ring-slate-600 ring-1">
+                      </div>
+                      <div>
+                        Finish my first personal website
+                      </div>
+                    </div>
+                    <p className="inline-block pl-5 font-Inter text-xs text-gray-500">
+                        on progress
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-center gap-3 mb-2">
+                  <div className="rounded-[10px] w-[10px] h-[10px] ring-slate-600 ring-1">
+                  </div>
+                  <div>
+                    Travel to Japan with my family 🎌
+                  </div>
+                </li>
+                <li className="flex items-center gap-3 mb-2">
+                  <div className="rounded-[10px] w-[10px] h-[10px] ring-slate-600 ring-1">
+                  </div>
+                  <div>
+                    Travel by my own from Okinawa to Hokkaido 🗾
+                  </div>
+                </li>
+                <li className="flex items-center gap-3 mb-2">
+                  <div className="pl-6">
+                    More to come
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
+        <div className="mt-10 bg-neutral-200 h-[1px] w-auto"></div>
         <div className="text-left">
           <h1 className=" mt-8 text-4xl font-Inter font-bold text-neutral-500">A New Resolution</h1>
           <p className="text-sm text-neutral-500 font-Inter pt-4 text-justify font-semibold">or maybe?</p>
