@@ -1,14 +1,18 @@
 "use client"
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
+import { yearContent, ValidYear} from "./YearContent";
+import { motion } from "framer-motion";
+
 
 export default function Home() {
   const [navbarEffect, setNavbarEffect] = useState(false);
+  const [selectedYear, setSelectedYear] = useState<ValidYear>("2025");
 
   useEffect (() => {
     const handleScroll = () => {
       const scrollPositon = window.scrollY;
-      const triggerpoint = 200;
+      const triggerpoint = 30;
   
       if (scrollPositon > triggerpoint){
         setNavbarEffect(true);
@@ -24,10 +28,10 @@ export default function Home() {
     <div className="max-w-screen-md mx-auto px-5">
       <header className="text-sm">
         <nav className="mt-8">
-          <div className={`flex ring-1 ring-gray-700/10 bg-neutral-800/20 p-2 rounded-lg h-[50px] shadow-lg mx-auto fixed left-1/2 -translate-x-1/2  z-10 transition-all duration-200 ${
+          <div className={`flex ring-1 ring-gray-700/10 bg-neutral-800 p-2 rounded-lg h-[50px] shadow-lg mx-auto fixed left-1/2 -translate-x-1/2  z-10 transition-all duration-1000 ${
               navbarEffect 
                 ? "backdrop-blur-sm bg-neutral-800/20" 
-                : "bg-neutral-800"}`}>
+                : ""}`}>
             <ul className="flex text-nowrap gap-4 px-4 items-center ">
               <a className="text-white font-bold font-Inter hover:text-gray-600 duration-200" href="">About</a>
               <a className="text-white font-bold font-Inter hover:text-gray-600 duration-200" href="">Recap</a>
@@ -66,20 +70,27 @@ export default function Home() {
       </div>
       <div className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
         <div className="text-xl flex justify-start mt-4 gap-4 font-mono ">
-          <div className="font-extrabold hover:shadow-2xl hover:shadow-emerald-700 hover:text-white hover:bg-emerald-700 duration-300 bg-white/30 rounded-xl p-4 backdrop-blur-md bg-opacity-70 shadow-xl ring-1 ring-gray-700/20 z-[-0]">
+          <button
+          onClick={() => setSelectedYear('2025')}
+          className={'font-extrabold hover:shadow-2xl hover:shadow-emerald-700 hover:text-white hover:bg-emerald-700 duration-300 bg-white/30 rounded-xl p-4 backdrop-blur-md bg-opacity-70 shadow-xl ring-1 ring-gray-700/20 z-[-0] ${}'}>
             2025
-          </div>
-          <div className="font-extrabold hover:shadow-2xl hover:shadow-yellow-400 hover:text-white hover:bg-yellow-400 duration-300 bg-white/30 rounded-xl p-4 backdrop-blur-md bg-opacity-70 shadow-xl ring-1 ring-gray-700/20 z-[-0] text-nowrap">
-            More to come!
-          </div>
+          </button >
+          <button
+          onClick={() => setSelectedYear('2024')}
+          className="font-extrabold hover:shadow-2xl hover:shadow-yellow-400 hover:text-white hover:bg-yellow-400 duration-300 bg-white/30 rounded-xl p-4 backdrop-blur-md bg-opacity-70 shadow-xl ring-1 ring-gray-700/20 z-[-0] text-nowrap">
+            2024
+          </button >
         </div>
-        <div className="text-left group">
-          <h1 className="duration-200 group-hover:font-extralight group-hover:text-sm mt-8 text-4xl font-Inter font-bold text-neutral-500">A New Chapter</h1>
-          <div className="flex justify-between">
-            <p className="text-sm  group-hover:text-sm group-hover:font-bold duration-200 text-neutral-500 font-Inter pt-4 text-justify font-extralight">Part 1</p>
-            <p className="text-sm  group-hover:text-sm group-hover:font-bold duration-200 text-neutral-500 font-Inter pt-4 text-justify font-extralight">2025</p>
-          </div>
-          <p className="duration-200 group-hover:text-lg text-sm font-mono pt-4 text-justify"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div className="mt-8">
+          <motion.div
+            key={selectedYear}
+            initial={{ opacity: 0, x: -100}}
+            animate={{ opacity: 1, x: 0}}
+            exit={{ opacity: 0, x: 100 }}
+            transition={{ duration: 0.5 }}
+          >
+            {yearContent[selectedYear]}
+          </motion.div>
         </div>
         <div className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
         <div className="text-left">
