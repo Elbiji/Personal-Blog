@@ -1,20 +1,38 @@
 "use client"
 import { useInView } from "react-intersection-observer";
-
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const {ref : myRef, inView: isElementVisible} = useInView();
+  const [navbarEffect, setNavbarEffect] = useState(false);
+
+  useEffect (() => {
+    const handleScroll = () => {
+      const scrollPositon = window.scrollY;
+      const triggerpoint = 200;
+  
+      if (scrollPositon > triggerpoint){
+        setNavbarEffect(true);
+      } else {
+        setNavbarEffect(false)
+      };
+    };
+
+    window.addEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="max-w-screen-md mx-auto px-5">
       <header className="text-sm">
         <nav className="mt-8">
-          <div className="flex ring-1 ring-gray-700/10 bg-neutral-800/20 p-2 rounded-lg h-[50px] shadow-lg mx-auto fixed left-1/2 -translate-x-1/2  backdrop-blur-sm z-10">
+          <div className={`flex ring-1 ring-gray-700/10 bg-neutral-800/20 p-2 rounded-lg h-[50px] shadow-lg mx-auto fixed left-1/2 -translate-x-1/2  z-10 transition-all duration-200 ${
+              navbarEffect 
+                ? "backdrop-blur-sm bg-neutral-800/20" 
+                : "bg-neutral-800"}`}>
             <ul className="flex text-nowrap gap-4 px-4 items-center ">
               <a className="text-white font-bold font-Inter hover:text-gray-600 duration-200" href="">About</a>
               <a className="text-white font-bold font-Inter hover:text-gray-600 duration-200" href="">Recap</a>
               <a className="text-white font-bold font-Inter hover:text-gray-600 duration-200" href="">Bucket List</a>
-              <div className="w-[2px] bg-neutral-500 h-[20px]"></div>
+              <div className="w-[1.2px] bg-neutral-500 h-[20px]"></div>
               <a className="text-neutral-500 font-bold font-Inter hover:text-white duration-200">More</a>
             </ul>
           </div>
@@ -65,11 +83,11 @@ export default function Home() {
         </div>
         <div className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
         <div className="text-left">
-          <h1 ref={myRef} className=" mt-8 text-5xl font-Inter font-bold ">Bucket List</h1>
+          <h1  className=" mt-8 text-5xl font-Inter font-bold ">Bucket List</h1>
           <p className="text-sm text-neutral-500 font-Inter pt-4 text-justify font-semibold">Things that i always wish  would come true.</p>
           <div className="flex mt-10">
             <div className="flex justify-end items-center text-sm font-mono ">
-              <ul>
+              <ul className="font-semibold">
                 <li className="mb-2">
                   <div className="flex flex-col">
                     <div className="flex items-center gap-3">
@@ -129,6 +147,7 @@ export default function Home() {
         </div>
         <h1 className=" mt-2 text-sm font-Inter font-semibold text-neutral-500">P.S. Huge respect for Theodorus Clarence that made me want to learn Tailwind and JS and check out his web https://theodorusclarence.com/ </h1>
         <div className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
+
     </div>  
   );
 }
