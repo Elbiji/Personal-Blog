@@ -1,8 +1,12 @@
+"use client"
+import { useInView } from "react-intersection-observer";
+
 
 export default function Home() {
+  const {ref : myRef, inView: isElementVisible} = useInView();
+
   return (
     <div className="max-w-screen-md mx-auto px-5">
-      <script src="https://unpkg.com/country-flag-emoji@latest/dist/country-flag-emoji.umd.js"></script>
       <header className="text-sm">
         <nav className="mt-8">
           <div className="flex ring-1 ring-gray-700/10 bg-neutral-800/20 p-2 rounded-lg h-[50px] shadow-lg mx-auto fixed left-1/2 -translate-x-1/2  backdrop-blur-sm z-10">
@@ -61,7 +65,7 @@ export default function Home() {
         </div>
         <div className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
         <div className="text-left">
-          <h1 className=" mt-8 text-5xl font-Inter font-bold ">Bucket List</h1>
+          <h1 ref={myRef} className=" mt-8 text-5xl font-Inter font-bold ">Bucket List</h1>
           <p className="text-sm text-neutral-500 font-Inter pt-4 text-justify font-semibold">Things that i always wish  would come true.</p>
           <div className="flex mt-10">
             <div className="flex justify-end items-center text-sm font-mono ">
