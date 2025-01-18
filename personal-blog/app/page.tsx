@@ -2,12 +2,12 @@
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 import { yearContent, ValidYear} from "./YearContent";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 
 export default function Home() {
-  const [navbarEffect, setNavbarEffect] = useState(false);
-  const [selectedYear, setSelectedYear] = useState<ValidYear>("2025");
+  const [navbarEffect, setNavbarEffect] = useState(false); // navbar effect which use boolean by scrolling to a certain pixel amount
+  const [selectedYear, setSelectedYear] = useState<ValidYear>("2025"); // initial value of my recap state which is a key index that maps strings
 
   useEffect (() => {
     const handleScroll = () => {
@@ -22,15 +22,20 @@ export default function Home() {
     };
 
     window.addEventListener('scroll', handleScroll);
+
+    // Clean to ensure no memory leaks
+    return () => {
+      window.removeEventListener('scroll', handleScroll) 
+    }
   }, []);
 
   return (
     <div className="max-w-screen-md mx-auto px-5">
       <header className="text-sm">
         <nav className="mt-8">
-          <div className={`flex ring-1 ring-gray-700/10 bg-neutral-800 p-2 rounded-lg h-[50px] shadow-lg mx-auto fixed left-1/2 -translate-x-1/2  z-10 transition-all duration-1000 ${
+          <div className={`flex ring-1 ring-gray-700/10 bg-neutral-800 p-2 rounded-lg h-[50px] shadow-sm mx-auto fixed left-1/2 -translate-x-1/2  z-10 transition-all duration-1000 ${
               navbarEffect 
-                ? "backdrop-blur-sm bg-neutral-800/20" 
+                ? "backdrop-blur-md bg-neutral-800/15" 
                 : ""}`}>
             <ul className="flex text-nowrap gap-4 px-4 items-center ">
               <a className="text-white font-bold font-Inter hover:text-gray-600 duration-200" href="">About</a>
@@ -44,13 +49,12 @@ export default function Home() {
       </header>
       <div className="pt-32 items-center font-Inter max-w-[30rem] text-left">
       <div>
-        <h1 className="font-light text-5xl hover:font-bold hover:text-emerald-700 duration-300">Hello!</h1>
+        <h1 className="font-light text-5xl hover:font-bold inline-block duration-300">Hello!</h1>
         <h2 className="font-semibold pt-2">I am Bagas Noor 🙌 </h2>
         <h1 className=" mt-2 text-sm font-Inter font-semibold text-neutral-500">A sophomore year student in Indonesia</h1>
         <h1 className=" mt-2 text-sm font-Inter font-semibold text-neutral-500">and this is a short story about me</h1>
       </div>
       <p className="text-sm font-mono font-medium pt-4"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      </div>
       <div className="flex mt-4 items-center justify-start gap-4">
         <a href="https://github.com/Elbiji" className="hover:text-emerald-700 duration-300">
           <svg className="hover:fill-emerald-700 duration-300" width="16" height="16"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
@@ -68,7 +72,21 @@ export default function Home() {
           </svg>
         </a>
       </div>
+      </div>
       <div className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
+        <div className="mt-8">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedYear}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, x: 50 }}
+            >
+              {yearContent[selectedYear]}
+            </motion.div>
+          </AnimatePresence>
+        </div>
         <div className="text-xl flex justify-start mt-4 gap-4 font-mono ">
           <button
           onClick={() => setSelectedYear('2025')}
@@ -80,17 +98,6 @@ export default function Home() {
           className="font-extrabold hover:shadow-2xl hover:shadow-yellow-400 hover:text-white hover:bg-yellow-400 duration-300 bg-white/30 rounded-xl p-4 backdrop-blur-md bg-opacity-70 shadow-xl ring-1 ring-gray-700/20 z-[-0] text-nowrap">
             2024
           </button >
-        </div>
-        <div className="mt-8">
-          <motion.div
-            key={selectedYear}
-            initial={{ opacity: 0, x: -100}}
-            animate={{ opacity: 1, x: 0}}
-            exit={{ opacity: 0, x: 100 }}
-            transition={{ duration: 0.5 }}
-          >
-            {yearContent[selectedYear]}
-          </motion.div>
         </div>
         <div className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
         <div className="text-left">
@@ -141,11 +148,6 @@ export default function Home() {
                     Travel by my own from Okinawa to Hokkaido 🗾
                   </div>
                 </li>
-                <li className="flex items-center gap-3 mb-2">
-                  <div className="pl-6">
-                    More to come
-                  </div>
-                </li>
               </ul>
             </div>
           </div>
@@ -158,7 +160,6 @@ export default function Home() {
         </div>
         <h1 className=" mt-2 text-sm font-Inter font-semibold text-neutral-500">P.S. Huge respect for Theodorus Clarence that made me want to learn Tailwind and JS and check out his web https://theodorusclarence.com/ </h1>
         <div className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
-
     </div>  
   );
 }
