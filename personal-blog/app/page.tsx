@@ -1,6 +1,6 @@
 "use client"
 import { useInView } from "react-intersection-observer";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { yearContent, ValidYear} from "./YearContent";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -8,6 +8,9 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Home() {
   const [navbarEffect, setNavbarEffect] = useState(false); // navbar effect which use boolean by scrolling to a certain pixel amount
   const [selectedYear, setSelectedYear] = useState<ValidYear>("2025"); // initial value of my recap state which is a key index that maps strings
+  const recapRef = useRef<HTMLDivElement | null>(null);
+  const bucketRef = useRef<HTMLDivElement | null>(null);
+  const aboutRef = useRef<HTMLDivElement | null>(null); 
 
   useEffect (() => {
     const handleScroll = () => {
@@ -37,24 +40,36 @@ export default function Home() {
               navbarEffect 
                 ? "backdrop-blur-md bg-neutral-800/15" 
                 : ""}`}>
-            <ul className="flex text-nowrap gap-4 px-4 items-center ">
-              <a className="text-white font-bold font-Inter hover:text-gray-600 duration-200" href="">About</a>
-              <a className="text-white font-bold font-Inter hover:text-gray-600 duration-200" href="">Recap</a>
-              <a className="text-white font-bold font-Inter hover:text-gray-600 duration-200" href="">Bucket List</a>
+            <ul className="flex text-nowrap gap-4 px-4 items-center font-Geist font-bold ">
+              <a className="text-white   hover:text-gray-600 duration-200 hover:cursor-pointer" onClick={() => {
+                aboutRef.current?.scrollIntoView({
+                  behavior:"smooth"
+                })
+              }}>About</a>
+              <a className="text-white   hover:text-gray-600 duration-200 hover:cursor-pointer" onClick={() =>{
+                recapRef.current?.scrollIntoView({
+                  behavior:"smooth"
+                })
+              }}>Recap</a>
+              <a className="text-white   hover:text-gray-600 duration-200 hover:cursor-pointer" onClick={() => {
+                bucketRef.current?.scrollIntoView({
+                  behavior:"smooth"
+                })
+              }}>Bucket List</a>
               <div className="w-[1.2px] bg-neutral-500 h-[20px]"></div>
-              <a className="text-neutral-500 font-bold font-Inter hover:text-white duration-200">More</a>
+              <a className="text-neutral-500   hover:text-white duration-200">More</a>
             </ul>
           </div>
         </nav>
       </header>
-      <div className="pt-32 items-center font-Inter max-w-[30rem] text-left">
+      <div ref={aboutRef} className="pt-32 items-center font-Inter max-w-[30rem] text-left">
       <div>
-        <h1 className="font-light text-5xl hover:font-bold inline-block duration-300">Hello!</h1>
+        <h1 className="font-light text-5xl hover:font-bold hover:tracking-wider inline-block duration-300">Hello!</h1>
         <h2 className="font-semibold pt-2">I am Bagas Noor 🙌 </h2>
         <h1 className=" mt-2 text-sm font-Inter font-semibold text-neutral-500">A sophomore year student in Indonesia</h1>
         <h1 className=" mt-2 text-sm font-Inter font-semibold text-neutral-500">and this is a short story about me</h1>
       </div>
-      <p className="text-sm font-mono font-medium pt-4"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p className="text-sm font-mono font-medium pt-4 tracking-wide"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       <div className="flex mt-4 items-center justify-start gap-4">
         <a href="https://github.com/Elbiji" className="hover:text-emerald-700 duration-300">
           <svg className="hover:fill-emerald-700 duration-300" width="16" height="16"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
@@ -74,7 +89,7 @@ export default function Home() {
       </div>
       </div>
       <div className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
-        <div className="mt-8">
+        <div ref={recapRef} className="mt-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={selectedYear}
@@ -100,7 +115,7 @@ export default function Home() {
           </button >
         </div>
         <div className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
-        <div className="text-left">
+        <div ref={bucketRef} className="text-left">
           <h1  className=" mt-8 text-5xl font-Inter font-bold ">Bucket List</h1>
           <p className="text-sm text-neutral-500 font-Inter pt-4 text-justify font-semibold">Things that i always wish  would come true.</p>
           <div className="flex mt-10">

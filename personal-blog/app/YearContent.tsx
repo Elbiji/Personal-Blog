@@ -14,7 +14,7 @@ export const yearContent : Record<ValidYear, JSX.Element> = {
                 <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-gradient-to-b from-transparent via-white/35 to-white" />
                 <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-gradient-to-b from-transparent via-white/35 to-white" />
             </div> 
-            <div className="group">
+            <div className="group tracking-wide">
                 <h1 className=" duration-200 group-hover:font-extralight group-hover:text-sm mt-8 text-4xl font-Inter font-bold text-neutral-500">A New Chapter</h1>
                 <div className="flex justify-between">
                     <p id="2025" className="text-sm  group-hover:text-sm group-hover:font-bold duration-200 text-neutral-500 font-Inter pt-4 text-justify font-extralight">Part 1</p>
