@@ -7,14 +7,14 @@ export type ValidYear = "2025" | "2024"; //Typescript really need things to be s
 export const yearContent : Record<ValidYear, JSX.Element> = {
     "2025": ( 
         <div id="2025-container" className="text-left">
-            <div className="relative hover:">
+            <div className="relative ">
                 <video autoPlay muted loop className="w-full h-[400px] object-cover z-0 rounded-3xl rounded-b-none">
                     <source src="/frieren-sousou-no-frieren.mp4" type="video/mp4"></source>
                 </video>
-                <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-gradient-to-b from-transparent via-white/35 to-white" />
-                <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-gradient-to-b from-transparent via-white/35 to-white" />
+                <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-gradient-to-b from-transparent via-white/35 to-white z-0" />
+                <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-gradient-to-b from-transparent via-white/35 to-white z-0" />
             </div> 
-            <div className="group tracking-wide">
+            <div className="relative group tracking-wide -mt-[8px] z-10">
                 <h1 className=" duration-200 group-hover:font-extralight group-hover:text-sm mt-8 text-4xl font-Inter font-bold text-neutral-500">A New Chapter</h1>
                 <div className="flex justify-between">
                     <p id="2025" className="text-sm  group-hover:text-sm group-hover:font-bold duration-200 text-neutral-500 font-Inter pt-4 text-justify font-extralight">Part 1</p>
@@ -33,7 +33,7 @@ export const yearContent : Record<ValidYear, JSX.Element> = {
                 <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[200px] bg-gradient-to-b from-transparent via-white/35 to-white" />
                 <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-gradient-to-b from-transparent via-white/35 to-white" />
             </div>
-            <div className="group">
+            <div className="relative group tracking-wide -mt-[8px] z-10">
                 <h1 className="duration-200 group-hover:font-extralight group-hover:text-sm mt-8 text-4xl font-Inter font-bold text-neutral-500">The Unknown</h1>
                 <div className="flex justify-between">
                     <p id="2024" className="text-sm  group-hover:text-sm group-hover:font-bold duration-200 text-neutral-500 font-Inter pt-4 text-justify font-extralight">Part 1</p>

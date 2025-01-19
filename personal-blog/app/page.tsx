@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Home() {
   const [navbarEffect, setNavbarEffect] = useState(false); // navbar effect which use boolean by scrolling to a certain pixel amount
   const [selectedYear, setSelectedYear] = useState<ValidYear>("2025"); // initial value of my recap state which is a key index that maps strings
+  const [dropdown, setDropdown] = useState(false);
   const recapRef = useRef<HTMLDivElement | null>(null);
   const bucketRef = useRef<HTMLDivElement | null>(null);
   const aboutRef = useRef<HTMLDivElement | null>(null); 
@@ -30,6 +31,7 @@ export default function Home() {
     return () => {
       window.removeEventListener('scroll', handleScroll) 
     }
+
   }, []);
 
   return (
@@ -38,7 +40,7 @@ export default function Home() {
         <nav className="mt-8">
           <div className={`flex ring-1 ring-gray-700/10 bg-neutral-800 p-2 rounded-lg h-[50px] shadow-sm mx-auto fixed left-1/2 -translate-x-1/2  z-20 transition-all duration-1000 ${
               navbarEffect 
-                ? "backdrop-blur-md bg-neutral-800/15" 
+                ? "backdrop-blur-lg bg-neutral-800/15" 
                 : ""}`}>
             <ul className="flex text-nowrap gap-4 px-4 items-center font-Geist font-bold ">
               <a className="text-white   hover:text-gray-600 duration-200 hover:cursor-pointer" onClick={() => {
@@ -57,7 +59,21 @@ export default function Home() {
                 })
               }}>Bucket List</a>
               <div className="w-[1.2px] bg-neutral-500 h-[20px]"></div>
-              <a className="text-neutral-500   hover:text-white duration-200">More</a>
+              <div className="flex gap-[4px] items-center group cursor-pointer" onClick={()=> {
+                setDropdown(!dropdown)
+                console.log(dropdown)
+              }}>
+                <a className={`text-neutral-500  group-hover:text-white duration-200 ${
+                  dropdown
+                    ? "text-white"
+                    : ""
+                  }`}  >More</a>
+                <svg className= {`group-hover:fill-white fill-neutral-500 pt-[2px] duration-200 origin-center ${
+                  dropdown 
+                    ? "rotate-180 fill-white origin-center pt-[0px] pb-[2px]"
+                    : "rotate-0"
+                  } `} width="16" height="16"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
+              </div>
             </ul>
           </div>
         </nav>
@@ -88,8 +104,8 @@ export default function Home() {
         </a>
       </div>
       </div>
-      <div className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
-        <div ref={recapRef} className="mt-8">
+      <div ref={recapRef} className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
+        <div  className="mt-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={selectedYear}
@@ -114,8 +130,8 @@ export default function Home() {
             2024
           </button >
         </div>
-        <div className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
-        <div ref={bucketRef} className="text-left">
+        <div ref={bucketRef} className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
+        <div  className="text-left">
           <h1  className=" mt-8 text-5xl font-Inter font-bold ">Bucket List</h1>
           <p className="text-sm text-neutral-500 font-Inter pt-4 text-justify font-semibold">Things that i always wish  would come true.</p>
           <div className="flex mt-10">

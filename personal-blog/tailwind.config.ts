@@ -19,7 +19,7 @@ export default {
         foreground: "var(--foreground)",
       },
       backdropBlur: {
-        xs: '1.5px',
+        xs: '3px',
         md: '8px',
         lg: '10px',
       },
