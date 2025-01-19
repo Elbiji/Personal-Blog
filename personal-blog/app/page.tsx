@@ -3,6 +3,7 @@ import { useInView } from "react-intersection-observer";
 import { useEffect, useRef, useState } from "react";
 import { yearContent, ValidYear} from "./YearContent";
 import { motion, AnimatePresence } from "framer-motion";
+import DropDownMenu from "./components";
 
 
 export default function Home() {
@@ -59,22 +60,25 @@ export default function Home() {
                 })
               }}>Bucket List</a>
               <div className="w-[1.2px] bg-neutral-500 h-[20px]"></div>
-              <div className="flex gap-[4px] items-center group cursor-pointer" onClick={()=> {
-                setDropdown(!dropdown)
-                console.log(dropdown)
-              }}>
-                <a className={`text-neutral-500  group-hover:text-white duration-200 ${
-                  dropdown
-                    ? "text-white"
-                    : ""
-                  }`}  >More</a>
-                <svg className= {`group-hover:fill-white fill-neutral-500 pt-[2px] duration-200 origin-center ${
-                  dropdown 
-                    ? "rotate-180 fill-white origin-center pt-[0px] pb-[2px]"
-                    : "rotate-0"
-                  } `} width="16" height="16"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
+              <div className="relative">
+                <div className="flex gap-[4px] items-center group cursor-pointer" onClick={()=> {
+                  setDropdown(!dropdown)
+                  console.log(dropdown)
+                }}>
+                  <a className={`text-neutral-500  group-hover:text-white duration-200 ${
+                    dropdown
+                      ? "text-white"
+                      : ""
+                    }`}  >More</a>
+                  <svg className= {`group-hover:fill-white fill-neutral-500 pt-[2px] duration-200 origin-center ${
+                    dropdown 
+                      ? "rotate-180 fill-white origin-center pt-[0px] pb-[2px]"
+                      : "rotate-0"
+                    } `} width="16" height="16"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
+                </div>
               </div>
             </ul>
+            <DropDownMenu isOpen={dropdown}/>
           </div>
         </nav>
       </header>
