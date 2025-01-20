@@ -39,7 +39,7 @@ export default function Home() {
     <div className="max-w-screen-md mx-auto px-5">
       <header className="text-sm">
         <nav className="mt-8">
-          <div className={`flex ring-1 ring-gray-700/10 bg-neutral-800 p-2 rounded-lg h-[50px] shadow-sm mx-auto fixed left-1/2 -translate-x-1/2  z-20 transition-all duration-1000 ${
+          <div className={`flex bg-neutral-800 p-2 rounded-lg h-[50px] shadow-sm mx-auto fixed left-1/2 -translate-x-1/2  z-20 transition-all duration-1000 ${
               navbarEffect 
                 ? "backdrop-blur-lg bg-neutral-800/15" 
                 : ""}`}>
@@ -78,7 +78,7 @@ export default function Home() {
                 </div>
               </div>
             </ul>
-            <DropDownMenu isOpen={dropdown}/>
+            <DropDownMenu isOpen={dropdown} navbarEffect={navbarEffect}/>
           </div>
         </nav>
       </header>
