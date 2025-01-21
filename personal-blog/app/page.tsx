@@ -61,8 +61,10 @@ export default function Home() {
               }}>Bucket List</a>
               <div className="w-[1.2px] bg-neutral-500 h-[20px]"></div>
               <div className="relative">
-                <div className="flex gap-[4px] items-center group cursor-pointer" onClick={()=> {
-                  setDropdown(!dropdown)
+                <div className="flex gap-[4px] items-center group cursor-pointer" onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  setDropdown(prev => !prev)
                   console.log(dropdown)
                 }}>
                   <a className={`text-neutral-500  group-hover:text-white duration-200 ${
@@ -78,7 +80,8 @@ export default function Home() {
                 </div>
               </div>
             </ul>
-            <DropDownMenu isOpen={dropdown} navbarEffect={navbarEffect}/>
+            <DropDownMenu isOpen={dropdown} navbarEffect={navbarEffect}
+            setIsOpen={setDropdown}/>
           </div>
         </nav>
       </header>
@@ -122,16 +125,22 @@ export default function Home() {
             </motion.div>
           </AnimatePresence>
         </div>
-        <div className="text-xl flex justify-start mt-4 gap-4 font-mono ">
+        <div className="text-sm flex justify-start mt-4 gap-2 font-mono">
           <button
           onClick={() => setSelectedYear('2025')}
-          className={'font-extrabold hover:shadow-2xl hover:shadow-emerald-700 hover:text-white hover:bg-emerald-700 duration-300 bg-white/30 rounded-xl p-4 backdrop-blur-md bg-opacity-70 shadow-xl ring-1 ring-gray-700/20 z-[-0] ${}'}>
-            2025
+          className={' font-extrabold hover:shadow-2xl hover:shadow-emerald-700 hover:text-white hover:bg-emerald-700 duration-300 bg-white/30 rounded-2xl px-4 py-2 backdrop-blur-md bg-opacity-70 shadow-xl ring-1 ring-gray-700/20 z-[-0] ${}'}>
+            2025  
+            <span className="pl-1 text-xs font-normal font-Geist">
+               A New Chapter
+            </span>
           </button >
           <button
           onClick={() => setSelectedYear('2024')}
-          className="font-extrabold hover:shadow-2xl hover:shadow-yellow-400 hover:text-white hover:bg-yellow-400 duration-300 bg-white/30 rounded-xl p-4 backdrop-blur-md bg-opacity-70 shadow-xl ring-1 ring-gray-700/20 z-[-0] text-nowrap">
+          className="font-extrabold hover:shadow-2xl hover:shadow-yellow-400 hover:text-white hover:bg-yellow-400 duration-300 bg-white/30 rounded-2xl px-4 py-2 backdrop-blur-md bg-opacity-70 shadow-xl ring-1 ring-gray-700/20 z-[-0] text-nowrap">
             2024
+            <span className="pl-1 text-xs font-normal font-Geist">
+               The Unknown
+            </span>
           </button >
         </div>
         <div ref={bucketRef} className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>

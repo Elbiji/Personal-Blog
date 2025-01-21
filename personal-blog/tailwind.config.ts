@@ -1,4 +1,4 @@
-import { Geist, Inter, Lora } from "next/font/google";
+import { Geist, Inter, Lora, Pixelify_Sans } from "next/font/google";
 import { title } from "process";
 import type { Config } from "tailwindcss";
 
@@ -13,6 +13,7 @@ export default {
       fontFamily: {
         Inter: "Inter, 'sans-serif'",
         Geist: "Geist, 'sans-serif'",
+        PixelifySans: "Pixelify Sans, 'sans-serif'",
       },
       colors: {
         background: "var(--background)",
