@@ -8,7 +8,7 @@ export const yearContent : Record<ValidYear, JSX.Element> = {
     "2025": ( 
         <div id="2025-container" className="text-left">
             <div className="relative ">
-                <video autoPlay muted loop className="w-full h-[400px] object-cover z-0 rounded-3xl rounded-b-none">
+                <video autoPlay muted loop preload="auto" className="w-full h-[400px] object-cover z-0 rounded-3xl rounded-b-none">
                     <source src="/frieren-sousou-no-frieren.mp4" type="video/mp4"></source>
                 </video>
                 <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-gradient-to-b from-transparent via-white/35 to-white z-0" />
@@ -27,7 +27,7 @@ export const yearContent : Record<ValidYear, JSX.Element> = {
     "2024": (
         <div id="2024-container" className="text-left">
             <div className="relative">
-                <video autoPlay muted loop className="bg-gradient-to-b from-current to-transparent w-full h-[400px] object-cover z-0 rounded-2xl rounded-b-none">
+                <video autoPlay muted loop preload="auto" className="bg-gradient-to-b from-current to-transparent w-full h-[400px] object-cover z-0 rounded-2xl rounded-b-none">
                     <source src="/himmel.mp4" type="video/mp4"></source>
                 </video>
                 <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[200px] bg-gradient-to-b from-transparent via-white/35 to-white" />

@@ -7,9 +7,9 @@ import DropDownMenu from "./components";
 
 
 export default function Home() {
+  const [dropdown, setDropdown] = useState(false);
   const [navbarEffect, setNavbarEffect] = useState(false); // navbar effect which use boolean by scrolling to a certain pixel amount
   const [selectedYear, setSelectedYear] = useState<ValidYear>("2025"); // initial value of my recap state which is a key index that maps strings
-  const [dropdown, setDropdown] = useState(false);
   const recapRef = useRef<HTMLDivElement | null>(null);
   const bucketRef = useRef<HTMLDivElement | null>(null);
   const aboutRef = useRef<HTMLDivElement | null>(null); 
@@ -39,12 +39,12 @@ export default function Home() {
     <div className="max-w-screen-md mx-auto px-5">
       <header className="text-sm">
         <nav className="mt-8">
-          <div className={`flex bg-neutral-800 p-2 rounded-lg h-[50px] shadow-sm mx-auto fixed left-1/2 -translate-x-1/2  z-20 transition-all duration-1000 ${
+          <div className={`flex bg-neutral-800 p-2 rounded-lg h-[50px] shadow-sm fixed left-1/2 -translate-x-1/2  z-20 transition-all duration-1000 ${
               navbarEffect 
                 ? "backdrop-blur-lg bg-neutral-800/15" 
                 : ""}`}>
             <ul className="flex text-nowrap gap-4 px-4 items-center font-Geist font-bold ">
-              <a className="text-white   hover:text-gray-600 duration-200 hover:cursor-pointer" onClick={() => {
+              <a className="text-white  hover:text-gray-600 duration-200 hover:cursor-pointer" onClick={() => {
                 aboutRef.current?.scrollIntoView({
                   behavior:"smooth"
                 })
@@ -60,12 +60,10 @@ export default function Home() {
                 })
               }}>Bucket List</a>
               <div className="w-[1.2px] bg-neutral-500 h-[20px]"></div>
-              <div className="relative">
-                <div className="flex gap-[4px] items-center group cursor-pointer" onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  setDropdown(prev => !prev)
-                  console.log(dropdown)
+              <div className="">
+                <div className="flex gap-[4px] items-center group cursor-pointer" onClick={() => {
+                  setDropdown((pv) => !pv);
+                  console.log(dropdown);
                 }}>
                   <a className={`text-neutral-500  group-hover:text-white duration-200 ${
                     dropdown
@@ -80,8 +78,11 @@ export default function Home() {
                 </div>
               </div>
             </ul>
-            <DropDownMenu isOpen={dropdown} navbarEffect={navbarEffect}
-            setIsOpen={setDropdown}/>
+            {/* Pemberian dropdown disini mengakibatkan pengaturan margin berdasarkan komponen sebelumnya dalam hal ini yang menjadi acuannya adalah ul (unordered list) */}
+            {dropdown && (
+              <DropDownMenu isOpen={dropdown} navbarEffect={navbarEffect}
+              setIsOpen={setDropdown}/>
+            )}    
           </div>
         </nav>
       </header>
