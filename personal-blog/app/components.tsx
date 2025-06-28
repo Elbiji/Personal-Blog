@@ -1,23 +1,16 @@
 import { motion, AnimatePresence, px } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-
-
 interface DropdownMenuProps { // defining the required parameter for the sake of Typescript
     isOpen: boolean;
     navbarEffect: boolean;
-    setIsOpen : (isOpen: boolean) => void;
+    setIsOpen: (isOpen: boolean) => void;
 }
 
-export default function DropDownMenu({ isOpen, navbarEffect, setIsOpen }: DropdownMenuProps) {
-    const dropdownRef = useRef<HTMLDivElement>(null); 
+export default function DropDownMenu({ isOpen, setIsOpen }: DropdownMenuProps) {
     const SCROLL_THRESHOLD_PX = 30;
     
-
     useEffect(() => {
-
-
-
         function handleScroll() {
             const scrollposition = window.scrollY;
             if (scrollposition > SCROLL_THRESHOLD_PX){
@@ -41,7 +34,7 @@ export default function DropDownMenu({ isOpen, navbarEffect, setIsOpen }: Dropdo
                 initial={{ opacity: 0}}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3, ease:"easeInOut"}}
-                className="fixed left-1/2 -translate-x-1/2 mt-[50px]"> 
+                className="fixed left-1/2 -translate-x-1/2 mt-[55px]"> 
                     <div className="p-[8px] flex gap-[8px] bg-neutral-800 w-max rounded-2xl transition-all duration-1000
                     ">
                         <div className="relative overflow-hidden rounded-xl group cursor-pointer">

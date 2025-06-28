@@ -1,15 +1,15 @@
 "use client"
 import { useInView } from "react-intersection-observer";
 import { useEffect, useRef, useState } from "react";
-import { yearContent, ValidYear} from "./YearContent";
 import { motion, AnimatePresence } from "framer-motion";
+import { yearContent, ValidYear} from "./YearContent";
 import DropDownMenu from "./components";
 
 
 export default function Home() {
-  const [dropdown, setDropdown] = useState(false);
-  const [navbarEffect, setNavbarEffect] = useState(false); // navbar effect which use boolean by scrolling to a certain pixel amount
-  const [selectedYear, setSelectedYear] = useState<ValidYear>("2025"); // initial value of my recap state which is a key index that maps strings
+  const [dropdown, setDropdown] = useState(false); // Declaring a constant dropdown with initial state of false
+  const [navbarEffect, setNavbarEffect] = useState(false); // Declaring a constant navbarEffect with initial state of false
+  const [selectedYear, setSelectedYear] = useState<ValidYear>("2025"); // Declaring a constant selectedYear with initial state of "2025"
   const recapRef = useRef<HTMLDivElement | null>(null);
   const bucketRef = useRef<HTMLDivElement | null>(null);
   const aboutRef = useRef<HTMLDivElement | null>(null); 
@@ -17,7 +17,7 @@ export default function Home() {
   useEffect (() => {
     const handleScroll = () => {
       const scrollposition = window.scrollY;
-      const triggerpoint = 30;
+      const triggerpoint = 50;
       
       if (scrollposition > triggerpoint){
         setNavbarEffect(true);
@@ -37,12 +37,13 @@ export default function Home() {
 
   return (
     <div className="max-w-screen-md mx-auto px-5">
-      <header className="text-sm">
+      <header className="text-sm z-20">
         <nav className="mt-8">
-          <div className={`flex bg-neutral-800 p-2 rounded-lg h-[50px] shadow-sm fixed left-1/2 -translate-x-1/2  z-20 transition-all duration-1000 ${
+          <div className={`overflow-hidden flex bg-neutral-800 p-2 rounded-lg h-[50px] shadow-sm fixed left-1/2 -translate-x-1/2  z-20 transition-all duration-1000 ${
               navbarEffect 
                 ? "backdrop-blur-lg bg-neutral-800/15" 
                 : ""}`}>
+            {navbarEffect && <div className="w-full absolute inset-0 h-[200%] backdrop-blur-xl -z-10"></div>}      
             <ul className="flex text-nowrap gap-4 px-4 items-center font-Geist font-bold ">
               <a className="text-white  hover:text-gray-600 duration-200 hover:cursor-pointer" onClick={() => {
                 aboutRef.current?.scrollIntoView({
@@ -62,14 +63,9 @@ export default function Home() {
               <div className="w-[1.2px] bg-neutral-500 h-[20px]"></div>
               <div className="">
                 <div className="flex gap-[4px] items-center group cursor-pointer" onClick={() => {
-                  setDropdown((pv) => !pv);
-                  console.log(dropdown);
+                  setDropdown(!dropdown);
                 }}>
-                  <a className={`text-neutral-500  group-hover:text-white duration-200 ${
-                    dropdown
-                      ? "text-white"
-                      : ""
-                    }`}  >More</a>
+                  <a className="text-neutral-500  group-hover:text-white duration-200">More</a>
                   <svg className= {`group-hover:fill-white fill-neutral-500 pt-[2px] duration-200 origin-center ${
                     dropdown 
                       ? "rotate-180 fill-white origin-center pt-[0px] pb-[2px]"
@@ -78,12 +74,14 @@ export default function Home() {
                 </div>
               </div>
             </ul>
-            {/* Pemberian dropdown disini mengakibatkan pengaturan margin berdasarkan komponen sebelumnya dalam hal ini yang menjadi acuannya adalah ul (unordered list) */}
-            {dropdown && (
-              <DropDownMenu isOpen={dropdown} navbarEffect={navbarEffect}
-              setIsOpen={setDropdown}/>
-            )}    
           </div>
+          {/* Pemberian dropdown disini mengakibatkan pengaturan margin berdasarkan komponen sebelumnya dalam hal ini yang menjadi acuannya adalah ul (unordered list) */}
+          {/* setIsOpen dipake biar kita bisa ngerubah statenya atau nutup dari dalem si komponen DropdownMenu kayak scroll atau klik di luar area yang*/}    
+          {dropdown && (
+            <div className="relative z-30">
+              <DropDownMenu isOpen={dropdown} navbarEffect={navbarEffect} setIsOpen={setDropdown}/>
+            </div>
+          )}
         </nav>
       </header>
       <div ref={aboutRef} className="pt-32 items-center font-Inter max-w-[30rem] text-left">
