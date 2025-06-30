@@ -1,0 +1,30 @@
+.backdrop-edge {
+    /* Set this to whatever you want for the edge thickness: */
+    --thickness: 2px;
+
+    position: absolute;
+    inset: 0;
+    /*
+      Only a few pixels will be visible, but we’ll
+      set the height by 100% to include nearby elements.
+    */
+    height: 100%;
+    /*
+      Shift down by 100% of its own height, so that the
+      edge stacks underneath the main <header>:
+    */
+    transform: translateY(100%);
+    background: hsl(0deg 0% 100% / 0.1);
+    backdrop-filter: blur(8px) brightness(120%);
+    pointer-events: none;
+    /*
+      We mask out everything aside from the first few
+      pixels, specified by the --thickness variable:
+    */
+    mask-image: linear-gradient(
+      to bottom,
+      black 0,
+      black var(--thickness),
+      transparent var(--thickness)
+    );
+}
