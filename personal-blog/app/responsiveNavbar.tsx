@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import recapRef from "./page"
+import recapRef from "./Homepage"
 
 function responsiveNavbar(){
     const [width, setWidth] = useState(window.innerWidth);

@@ -65,12 +65,18 @@ export default function Home() {
                   behavior:"smooth"
                 })
               }}>Bucket List</a>
-              <div className="w-[1.2px] bg-neutral-500 h-[20px]"></div>
+              <div className={`w-[1.2px] bg-neutral-500 h-[20px] duration-500 ${
+                navbarEffect
+                  ? "bg-white"
+                  : ""}`}></div>
               <div className="">
                 <div className="flex gap-[4px] items-center group cursor-pointer" onClick={() => {
                   setDropdown(!dropdown);
                 }}>
-                  <a className="text-neutral-500  group-hover:text-white duration-200">More</a>
+                  <a className={`text-neutral-500  group-hover:text-white duration-200 ${
+                    dropdown
+                      ? "text-white"
+                      : ""}`}>More</a>
                   <svg className= {`group-hover:fill-white fill-neutral-500 pt-[2px] duration-200 origin-center ${
                     dropdown 
                       ? "rotate-180 fill-white origin-center pt-[0px] pb-[2px]"

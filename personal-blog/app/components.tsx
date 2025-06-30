@@ -10,12 +10,18 @@ interface DropdownMenuProps { // defining the required parameter for the sake of
 export default function DropDownMenu({ isOpen, setIsOpen }: DropdownMenuProps) {
     const SCROLL_THRESHOLD_PX = 30;
     const [width, setWidth] = useState(window.innerWidth);
+    const [isClosing, setIsClosing] = useState(false);
     
     useEffect(() => {
         function handleScroll() {
             const scrollposition = window.scrollY;
             if (scrollposition > SCROLL_THRESHOLD_PX){
-                setIsOpen(false);
+                setIsClosing(true);
+
+                setTimeout(() => {
+                    setIsOpen(false);
+                    setIsClosing(false);
+                }, 100);
             }
         }
 
@@ -34,7 +40,6 @@ export default function DropDownMenu({ isOpen, setIsOpen }: DropdownMenuProps) {
 
         return () => {
             removeEventListener('resize', handleResize);
-            console.log(width)
         }
     })
 
@@ -42,7 +47,7 @@ export default function DropDownMenu({ isOpen, setIsOpen }: DropdownMenuProps) {
 
     return (
         <AnimatePresence>
-            {isOpen && width > 650 ? (
+            {isOpen && width > 20000 ? (
                 <motion.div
                 exit={{ opacity: 0}}
                 initial={{ opacity: 0}}
@@ -73,7 +78,7 @@ export default function DropDownMenu({ isOpen, setIsOpen }: DropdownMenuProps) {
                 <motion.div
                 exit={{ opacity: 0}}
                 initial={{ opacity: 0}}
-                animate={{ opacity: 1 }}
+                animate={{ opacity: isClosing ? 0 : 1 }}
                 transition={{ duration: 0.3, ease:"easeInOut"}}
                 className="fixed left-1/2 -translate-x-1/2 mt-[55px]"> 
                     <div className="p-[6px] flex gap-[4px] bg-neutral-800 w-max rounded-2xl transition-all  duration-1000">
