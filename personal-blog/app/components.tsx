@@ -21,7 +21,7 @@ export default function DropDownMenu({ isOpen, setIsOpen }: DropdownMenuProps) {
                 setTimeout(() => {
                     setIsOpen(false);
                     setIsClosing(false);
-                }, 100);
+                }, 200);
             }
         }
 
@@ -81,7 +81,7 @@ export default function DropDownMenu({ isOpen, setIsOpen }: DropdownMenuProps) {
                 animate={{ opacity: isClosing ? 0 : 1 }}
                 transition={{ duration: 0.3, ease:"easeInOut"}}
                 className="fixed left-1/2 -translate-x-1/2 mt-[55px]"> 
-                    <div className="p-[6px] flex gap-[4px] bg-neutral-800 w-max rounded-2xl transition-all  duration-1000">
+                    <div className="p-[8px] flex gap-[4px] bg-neutral-800 w-max rounded-2xl transition-all  duration-1000">
                         <div className="flex p-[4px] bg-neutral-700 rounded-xl group hover:bg-neutral-600 duration-500 cursor-pointer">
                             <div className="flex gap-[8px] w-[200px]">
                                 <div className="p-2 bg-neutral-800 rounded-xl ">
