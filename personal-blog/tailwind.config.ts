@@ -36,12 +36,29 @@ export default {
         'xs': '0.5px',
       },
       keyframes: {
-        move: {
+        slidein: {
+          from: {
+            opacity: "0",
+            transform: "translateY(-10px)",
+          },
           to: {
-            strokeDashoffset: '1000',
+            opacity: "1",
+            transform: "translateY(0)",
           },
         },
-      }
+        textReveal: {
+          from: {
+            transform: "translate(0, 100%)",
+          },
+          to: {
+            transform: "translate(0,0)"
+          },
+        }
+      },
+      animation: {
+        slidein: "slidein 1s ease 300ms",
+        textReveal: "textReveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) 0.5s"
+      },
     },
   },
   plugins: [],

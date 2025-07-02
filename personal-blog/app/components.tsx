@@ -115,3 +115,16 @@ export default function DropDownMenu({ isOpen, setIsOpen }: DropdownMenuProps) {
     )
 }
 
+export const TextRevealBucketList = ({text = "something"}) => {
+    return (
+        <>
+            <h1 className="overflow-hidden pb-[1px] mt-8 group text-4xl font-Geist font-bold  text-neutral-400">
+                {text.match(/./gu)!.map((char, index) => (
+                    <span className="group-hover:animate-textReveal inline-block [animation-fill-mode:backwards]" key={`${char}-${index}`} style={{animationDelay: `${index * 0.05}s`}}>
+                        {char === " " ? "\u00A0" : char}
+                    </span>
+                ))}
+            </h1>
+        </>
+    );
+}

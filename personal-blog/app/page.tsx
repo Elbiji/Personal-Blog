@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { yearContent, ValidYear} from "./YearContent";
 import './reusable.css';
 import DropDownMenu from "./components";
+import { TextRevealBucketList } from "./components";
 
 
 export default function Home() {
@@ -139,7 +140,7 @@ export default function Home() {
         </div>
         <div ref={bucketRef} className="mt-8 bg-neutral-200 h-[1px] w-auto"></div>
         <div  className="text-left">
-          <h1  className=" mt-8 text-5xl font-Inter font-bold ">Bucket List</h1>
+          <h1  className="overflow-hidden mt-8 text-5xl font-Inter font-bold">Bucket List</h1>
           <p className="text-sm text-neutral-500 font-Inter pt-4 text-justify font-semibold">Things that i always wish  would come true.</p>
           <div className="flex mt-10">
             <div className="flex justify-end items-center text-sm font-mono ">
@@ -214,9 +215,9 @@ export default function Home() {
           <div className="inset-0  mt-4 p-[1.4px] rounded-xl shadow-xl bg-gradient-to-tr from-neutral-300 via-neutral-200 to-neutral-100">
             <div className="p-[4px] flex h-full w-full rounded-[0.65rem] bg-white justify-between items-center">
               <div className="group flex items-center gap-1">
-                  <div className="border-solid border-2 p-[8px] rounded-lg hover:shadow-xl transition-all duration-[1200ms] cursor-pointer shadow-sm group bg-gradient-to-tr from-white via-white to-neutral-200 group-hover:rotate-12">
+                  <div className="border-solid border-2 p-[8px] rounded-lg hover:shadow-xl transition-all duration-[1200ms] shadow-sm group bg-gradient-to-tr from-white via-white to-neutral-200 group-hover:rotate-12">
                     <a className="hover:text-emerald-700 duration-[3000]">
-                      <svg className="duration-300  fill-neutral-400  group-hover:rotate-12 group-hover:animate-pulse group-hover:fill-neutral- group-hover:scale-150 transition-all" width="16" height="16" viewBox="0 0 25 25">
+                      <svg className="duration-300  fill-neutral-400  group-hover:rotate-12 group-hover:animate-pulse group-hover:scale-150 transition-all" width="16" height="16" viewBox="0 0 25 25">
                         <path d="M3.5 21V16M3.5 6V1M1 3.5H6M1 18.5H6M12 2L10.2658 6.50886C9.98381 7.24209 9.84281 7.60871 9.62353 7.91709C9.42919 8.1904 9.1904 8.42919 8.91709 8.62353C8.60871 8.8428 8.24209 8.98381 7.50886 9.26582L3 11L7.50886 12.7342C8.24209 13.0162 8.60871 13.1572 8.91709 13.3765C9.1904 13.5708 9.42919 13.8096 9.62353 14.0829C9.84281 14.3913 9.98381 14.7579 10.2658 15.4911L12 20L13.7342 15.4911C14.0162 14.7579 14.1572 14.3913 14.3765 14.0829C14.5708 13.8096 14.8096 13.5708 15.0829 13.3765C15.3913 13.1572 15.7579 13.0162 16.4911 12.7342L21 11L16.4911 9.26582C15.7579 8.98381 15.3913 8.8428 15.0829 8.62353C14.8096 8.42919 14.5708 8.1904 14.3765 7.91709C14.1572 7.60871 14.0162 7.24209 13.7342 6.50886L12 2Z"/>
                       </svg>
                     </a>
