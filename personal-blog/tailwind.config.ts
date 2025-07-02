@@ -34,6 +34,13 @@ export default {
       },
       blur: {
         'xs': '0.5px',
+      },
+      keyframes: {
+        move: {
+          to: {
+            strokeDashoffset: '1000',
+          },
+        },
       }
     },
   },
