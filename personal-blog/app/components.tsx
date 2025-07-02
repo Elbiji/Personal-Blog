@@ -115,6 +115,7 @@ export default function DropDownMenu({ isOpen, setIsOpen }: DropdownMenuProps) {
     )
 }
 
+// By Julien Thibeaut
 export const TextRevealBucketList = ({text = "something"}) => {
     return (
         <>
